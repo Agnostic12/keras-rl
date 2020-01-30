@@ -41,7 +41,7 @@ class AtariProcessor(Processor):
         return np.clip(reward, -1., 1.)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--mode', choices=['train', 'test'], default='train')
+parser.add_argument('--mode', choices=['train', 'test'], default='test')
 parser.add_argument('--env-name', type=str, default='BreakoutDeterministic-v4')
 parser.add_argument('--weights', type=str, default=None)
 args = parser.parse_args()
