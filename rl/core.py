@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import warnings
 from copy import deepcopy
+import time
 
 import numpy as np
 from keras.callbacks import History
@@ -248,7 +249,7 @@ class Agent(object):
         return history
 
     def test(self, env, nb_episodes=1, action_repetition=1, callbacks=None, visualize=True,
-             nb_max_episode_steps=None, nb_max_start_steps=0, start_step_policy=None, verbose=1):
+             nb_max_episode_steps=None, nb_max_start_steps=0, start_step_policy=None, verbose=1, time_interval=0):
         """Callback that is called before training begins.
 
         # Arguments
@@ -378,6 +379,8 @@ class Agent(object):
                     if d:
                         done = True
                         break
+                # slow down the test process in order to see it clearly
+                time.sleep(time_interval)
                 if nb_max_episode_steps and episode_step >= nb_max_episode_steps - 1:
                     done = True
                 self.backward(reward, terminal=done)
